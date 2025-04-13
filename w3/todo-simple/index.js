@@ -1,4 +1,4 @@
-let ctr = 0;
+let ctr = 1;
 
 function addTodo() {
     const inputEl = document.querySelector("input");
@@ -9,7 +9,10 @@ function addTodo() {
     newDivEl.setAttribute("id", ctr);
     newDivEl.setAttribute("style", "display: flex;");
 
-    newDivEl.innerHTML = '<h4>' + value + '</h4> <button onclick="deleteTodo(' + ctr + ')">delete</button>';
+    if (ctr%2 == 0) newDivEl.setAttribute("class", "todo-1");
+    else newDivEl.setAttribute("class", "todo-2");
+
+    newDivEl.innerHTML = '<h4>' + ctr + '. ' + value + '</h4> <button onclick="deleteTodo(' + ctr + ')">delete</button>';
     document.querySelector("body").appendChild(newDivEl);
 
     ctr = ctr + 1;
