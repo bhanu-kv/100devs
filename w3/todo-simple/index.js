@@ -11,8 +11,18 @@ function addTodo() {
 
     if (ctr%2 == 0) newDivEl.setAttribute("class", "todo-1");
     else newDivEl.setAttribute("class", "todo-2");
+    
+    const spanEl = document.createElement("span");
+    const buttonEl = document.createElement("button");
 
-    newDivEl.innerHTML = '<h4>' + ctr + '. ' + value + '</h4> <button onclick="deleteTodo(' + ctr + ')">delete</button>';
+    spanEl.innerHTML = ctr + '.' + value;
+    buttonEl.textContent = 'Delete';
+    buttonEl.setAttribute("onclick", "deleteTodo(" + ctr + ")");
+
+    newDivEl.appendChild(spanEl);
+    newDivEl.appendChild(buttonEl);
+    
+    // newDivEl.innerHTML = '<h4>' + ctr + '. ' + value + '</h4> <button onclick="deleteTodo(' + ctr + ')">delete</button>';
     document.querySelector("body").appendChild(newDivEl);
 
     ctr = ctr + 1;
@@ -21,4 +31,5 @@ function addTodo() {
 function deleteTodo(index) {
     const element = document.getElementById(index);
     element.parentNode.removeChild(element);
+    ctr = ctr - 1;
 }
